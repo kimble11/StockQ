@@ -1,0 +1,45 @@
+{
+  "interval": 10,
+  "watchlist": [
+    {
+      "id": "TSLA",
+      "name": "特斯拉"
+    },
+    {
+      "id": "NVDA",
+      "name": "輝達"
+    },
+    {
+      "id": "TSM",
+      "name": "台積電"
+    },
+    {
+      "id": "AAPL",
+      "name": "蘋果"
+    },
+    {
+      "id": "MSFT",
+      "name": "微軟"
+    },
+    {
+      "id": "GOOGL",
+      "name": "谷歌"
+    },
+    {
+      "id": "AMZN",
+      "name": "亞馬遜"
+    },
+    {
+      "id": "INTC",
+      "name": "英特爾"
+    },
+    {
+      "id": "META",
+      "name": "臉書"
+    },
+    {
+      "id": "SOUN",
+      "name": "SoundHound AI, Inc."
+    }
+  ]
+}

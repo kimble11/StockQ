@@ -1,0 +1,5 @@
+target/
+__pycache__/
+*.pyc
+stock_tracker_package.zip
+stock_package/
