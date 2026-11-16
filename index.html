@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StockQ — 即時股票追蹤看板</title>
+<meta name="description" content="StockQ 是 Rust + ratatui 打造的終端機股票追蹤器，支援台股與美股即時報價。">
+<style>
+  :root{color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0f14;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",sans-serif;line-height:1.7}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 20px 64px}
+  header{border-bottom:1px solid #21262d;padding-bottom:28px}
+  h1{font-size:42px;line-height:1.15;margin:0 0 12px}
+  h1 span{color:#3fb950}
+  .tag{font-size:19px;color:#adbac7;margin:0}
+  .pill{display:inline-block;margin-top:16px;padding:4px 12px;border:1px solid #30363d;border-radius:999px;color:#adbac7;font-size:14px}
+  .btns{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+  a.btn{display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:700}
+  a.primary{background:#3fb950;color:#0b0f14}
+  a.ghost{border:1px solid #30363d;color:#e6edf3}
+  h2{font-size:24px;margin:44px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:18px}
+  .card h3{margin:0 0 8px;font-size:18px}
+  .card p{margin:0;color:#adbac7}
+  code{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:2px 6px}
+  pre{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:16px;overflow:auto}
+  pre code{background:none;border:none;padding:0}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #21262d}
+  th{color:#adbac7}
+  .note{background:#161b22;border-left:4px solid #d29922;border-radius:8px;padding:14px 16px;color:#adbac7}
+  footer{margin-top:48px;border-top:1px solid #21262d;padding-top:20px;color:#768390;font-size:14px}
+  a{color:#58a6ff}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>StockQ <span>— 即時股票追蹤看板</span></h1>
+    <p class="tag">Rust + ratatui 打造的終端機股票追蹤器，支援台股與美股即時報價。</p>
+    <div class="pill">台股 · 美股 · 終端機程式</div>
+    <div class="btns">
+      <a class="btn primary" href="https://github.com/kimble11/StockQ">前往 GitHub Repo</a>
+      <a class="btn ghost" href="https://github.com/kimble11/StockQ/archive/refs/heads/main.zip">下載 main.zip</a>
+    </div>
+  </header>
+
+  <h2>功能</h2>
+  <div class="grid">
+    <div class="card"><h3>即時更新報價</h3><p>更新間隔可自訂，預設 10 秒。</p></div>
+    <div class="card"><h3>紅綠燈漲跌視覺化</h3><p>漲跌一目了然。</p></div>
+    <div class="card"><h3>設定選單</h3><p>調整更新頻率、新增 / 刪除追蹤股票。</p></div>
+    <div class="card"><h3>雙資料源自動切換</h3><p>CMoney + Yahoo Finance，來源失效時自動切換。</p></div>
+  </div>
+
+  <h2>兩個追蹤器</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>台股</h3>
+      <p><code>taiwan_stock/stock_tracker.exe</code><br>設定在 <code>taiwan_stock/config.json</code></p>
+      <p>主要來源 CMoney，備用 TWSE MIS。</p>
+    </div>
+    <div class="card">
+      <h3>美股</h3>
+      <p><code>us_stock/us_stock_tracker.exe</code><br>設定在 <code>us_stock/config.json</code></p>
+      <p>主要來源 CMoney US，備用 Yahoo Finance。</p>
+    </div>
+  </div>
+
+  <h2>使用方式</h2>
+  <ol>
+    <li>下載 zip 或 clone 這個 repo：<code>git clone https://github.com/kimble11/StockQ.git</code></li>
+    <li>雙擊 <code>stock_launcher.bat</code> 開啟啟動選單</li>
+    <li>按 <code>1</code> 台股、<code>2</code> 美股</li>
+  </ol>
+  <p>從原始碼編譯需要安裝 <a href="https://rustup.rs/">Rust</a>：台股在 <code>taiwan_stock/stock_tracker_ui</code>、美股在 <code>us_stock/us_stock_tracker_ui</code> 執行 <code>cargo build --release</code>。</p>
+
+  <h2>操作方式</h2>
+  <table>
+    <tr><th>按鍵</th><th>功能</th></tr>
+    <tr><td><code>↑</code> <code>↓</code></td><td>選取股票</td></tr>
+    <tr><td><code>S</code></td><td>進入設定</td></tr>
+    <tr><td><code>Q</code></td><td>離開</td></tr>
+    <tr><td><code>A</code></td><td>新增股票</td></tr>
+    <tr><td><code>D</code></td><td>刪除股票</td></tr>
+    <tr><td><code>ESC</code></td><td>返回</td></tr>
+  </table>
+
+  <h2>設定檔</h2>
+  <p>修改 <code>config.json</code> 自訂追蹤清單與更新頻率：</p>
+  <pre><code>{
+  "interval": 10,
+  "watchlist": [
+    { "id": "2330", "name": "台積電" },
+    { "id": "TSLA", "name": "特斯拉" }
+  ]
+}</code></pre>
+  <p><code>interval</code>：更新秒數（1–300）。台股輸入股票代號（如 <code>2330</code>），美股輸入 ticker（如 <code>TSLA</code>）。</p>
+
+  <h2>技術棧</h2>
+  <p>語言 Rust · UI ratatui + crossterm · 非同步 tokio · HTTP reqwest · 序列化 serde + serde_json · License MIT</p>
+
+  <div class="note">提醒：StockQ 是要在終端機執行的程式，這個頁面是介紹與下載入口，頁面本身不會顯示即時報價。</div>
+
+  <footer>
+    StockQ · <a href="https://github.com/kimble11/StockQ">github.com/kimble11/StockQ</a> · viphbo.loc.cc
+  </footer>
+</main>
+</body>
+</html>
